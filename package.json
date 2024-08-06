@@ -1,0 +1,8 @@
+{
+  "name": "BotG2",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
