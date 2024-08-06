@@ -2,9 +2,9 @@ const axios = require('axios');
 const TelegramBot = require('node-telegram-bot-api');
 const keep_alive = require('./keep_alive.js');
 
-const token = '6616134691:AAFyAugZ5ItcHBvZfAi3EvIV5P4OPWajREI';
+const token = '7292586219:AAEerbRNkRS6atNxLebo_9Ngc_qgFiR99pA';
 const bot = new TelegramBot(token, { polling: true });
-const chatId = '1958068409';
+const chatId = '6573357046';
 let  dataPhone = [];
 
 async function sendTelegramMessage(message) {
