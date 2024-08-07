@@ -94,7 +94,7 @@ async function exportGift() {
                 let found = false;
                 for (const gifts of dataGifts) {
                     for (const gift of gifts) {
-                        if (gift.post.id === '08dcb2c3-3afe-46fb-8ba3-41d857a35f42') {
+                        if (gift.post.id === '08dcb2c3-3afe-46fb-8ba3-41d857a35f42' || gift.post.id ==="08dcb2cc-9abd-4175-86cb-0ecfb3dd4bcc") {
                             const message = `${phone}: ${gift.post.title}`;
                             found = true;
                             usedPhones.push(phone);
