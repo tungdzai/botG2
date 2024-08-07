@@ -122,8 +122,8 @@ async function exportGift() {
         }
     }
 
-    const summaryMessage = `Tổng số đã dùng coupon 200K: ${usedCouponCount}:${unusedPhones.join(', ')}\n` +
-        `Tổng chưa dùng coupon 200K': ${hasGiftPostCount}:${usedPhones.join(', ')}`
+    const summaryMessage = `Tổng đã dùng coupon 200K: ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
+        `Tổng chưa dùng coupon 200K': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
     await sendTelegramMessage(summaryMessage);
     dataPhone = [];
 }
@@ -151,7 +151,7 @@ bot.on('message', async (msg) => {
                 }
             });
             console.log(invalidPhones)
-            let responseMessage = `Danh sách số điện thoại hhập vào:\n${dataPhone.join('\n')}`;
+            let responseMessage = `Danh sách số điện thoại nhập vào:\n${dataPhone.join('\n')}`;
             if (invalidPhones.length > 0) {
                 responseMessage += `\nSố điện thoại không hợp lệ: ${invalidPhones.join(', ')}`;
             }
