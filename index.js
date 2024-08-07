@@ -15,13 +15,16 @@ async function sendTelegramMessage(message) {
     }
 }
 
-async function login(userName, reties = 3) {
+async function login(userName, reties = 4) {
     let password = "";
     if (reties < 0) {
         return;
     }
-    if (reties === 3) {
+    if (reties === 4) {
         password = "111111";
+    }
+    if (reties === 3) {
+        password = "666777";
     }
     if (reties === 2) {
         password = "999999";
