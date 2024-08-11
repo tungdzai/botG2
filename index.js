@@ -7,6 +7,7 @@ const bot = new TelegramBot(token, { polling: true });
 const chatId = '6573357046';
 let  dataPhone = [];
 
+
 async function sendTelegramMessage(message) {
     try {
         await bot.sendMessage(chatId, message);
@@ -94,7 +95,8 @@ async function exportGift() {
                 let found = false;
                 for (const gifts of dataGifts) {
                     for (const gift of gifts) {
-                        if (gift.post.id ==="8dcb06b-6e6e-4588-848e-4612378518d8") {
+                        console.log(gift.post.id)
+                        if (gift.post.id === '08dcb06b-6e6e-4588-848e-4612378518d8') {
                             const message = `${phone}: ${gift.post.title}`;
                             found = true;
                             usedPhones.push(phone);
@@ -107,30 +109,29 @@ async function exportGift() {
                 }
                 if (!found) {
                     unusedPhones.push(phone);
-                    const message = `${phone}: Đã dùng coupon 100K`;
+                    const message = `${phone}: Đã dùng coupon 200K`;
                     usedCouponCount++;
                     console.log(message)
                 }
             } else {
                 unusedPhones.push(phone);
-                const message = `${phone}: Đã dùng coupon 100K`;
+                const message = `${phone}: Đã dùng coupon 200K`;
                 usedCouponCount++;
                 console.log(message)
             }
         } else {
             unusedPhones.push(phone);
-            const message = `${phone}: Đã dùng coupon 100K`;
+            const message = `${phone}: Đã dùng coupon 200K`;
             usedCouponCount++;
             console.log(message)
         }
     }
 
-    const summaryMessage = `Tổng đã dùng coupon : ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
-        `Tổng chưa dùng coupon ': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
+    const summaryMessage = `Tổng đã dùng : ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
+        `Tổng chưa dùng ': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
     await sendTelegramMessage(summaryMessage);
     dataPhone = [];
 }
-
 
 
 bot.on('message', async (msg) => {
