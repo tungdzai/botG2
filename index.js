@@ -94,7 +94,7 @@ async function exportGift() {
                 let found = false;
                 for (const gifts of dataGifts) {
                     for (const gift of gifts) {
-                        if (gift.post.id === '08dcb2c3-3afe-46fb-8ba3-41d857a35f42' || gift.post.id ==="08dcb2cc-9abd-4175-86cb-0ecfb3dd4bcc") {
+                        if (gift.post.id === '08dcb2c3-3afe-46fb-8ba3-41d857a35f42' || gift.post.id ==="08dcb2cc-9abd-4175-86cb-0ecfb3dd4bcc" || gift.post.id ==="8dcb06b-6e6e-4588-848e-4612378518d8") {
                             const message = `${phone}: ${gift.post.title}`;
                             found = true;
                             usedPhones.push(phone);
@@ -107,26 +107,26 @@ async function exportGift() {
                 }
                 if (!found) {
                     unusedPhones.push(phone);
-                    const message = `${phone}: Đã dùng coupon 200K`;
+                    const message = `${phone}: Đã dùng coupon 100K`;
                     usedCouponCount++;
                     console.log(message)
                 }
             } else {
                 unusedPhones.push(phone);
-                const message = `${phone}: Đã dùng coupon 200K`;
+                const message = `${phone}: Đã dùng coupon 100K`;
                 usedCouponCount++;
                 console.log(message)
             }
         } else {
             unusedPhones.push(phone);
-            const message = `${phone}: Đã dùng coupon 200K`;
+            const message = `${phone}: Đã dùng coupon 100K`;
             usedCouponCount++;
             console.log(message)
         }
     }
 
-    const summaryMessage = `Tổng đã dùng coupon 200K: ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
-        `Tổng chưa dùng coupon 200K': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
+    const summaryMessage = `Tổng đã dùng coupon : ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
+        `Tổng chưa dùng coupon ': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
     await sendTelegramMessage(summaryMessage);
     dataPhone = [];
 }
