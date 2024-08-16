@@ -95,9 +95,8 @@ async function exportGift() {
                 let found = false;
                 for (const gifts of dataGifts) {
                     for (const gift of gifts) {
-                        console.log(gift.post.id)
-                        if (gift.post.id === '08dcb06b-6e6e-4588-848e-4612378518d8') {
-                            const message = `${phone}: ${gift.post.title}`;
+                        if (gift.referral.id === '08dcb51a-6d9e-407c-8dfe-fc37a5319ae3') {
+                            const message = `${phone}: ${gift.referral.title}`;
                             found = true;
                             usedPhones.push(phone);
                             hasGiftPostCount++;
@@ -109,19 +108,19 @@ async function exportGift() {
                 }
                 if (!found) {
                     unusedPhones.push(phone);
-                    const message = `${phone}: Đã dùng coupon 200K`;
+                    const message = `${phone}: Đã dùng coupon`;
                     usedCouponCount++;
                     console.log(message)
                 }
             } else {
                 unusedPhones.push(phone);
-                const message = `${phone}: Đã dùng coupon 200K`;
+                const message = `${phone}: Đã dùng coupon`;
                 usedCouponCount++;
                 console.log(message)
             }
         } else {
             unusedPhones.push(phone);
-            const message = `${phone}: Đã dùng coupon 200K`;
+            const message = `${phone}: Đã dùng coupon`;
             usedCouponCount++;
             console.log(message)
         }
@@ -129,7 +128,9 @@ async function exportGift() {
 
     const summaryMessage = `Tổng đã dùng : ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
         `Tổng chưa dùng ': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
+    const status=`Yêu mỡ yêu yêuuuuuuuu `
     await sendTelegramMessage(summaryMessage);
+    await sendTelegramMessage(status);
     dataPhone = [];
 }
 
