@@ -28,7 +28,7 @@ async function login(userName, reties = 4) {
         password = "666777";
     }
     if (reties === 2) {
-        password = "999999";
+        password = "777333";
     }
     if (reties === 1) {
         password = "888888";
