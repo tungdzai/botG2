@@ -38,19 +38,13 @@ async function login(userName, reties = 4) {
         password: password
     };
     const headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Accept": "application/json, text/plain, */*",
+        "user-agent": "Dart/2.18 (dart:io)",
         "Content-Type": "application/json",
-        "sec-ch-ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
-        "sec-ch-ua-mobile": "?0",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-        "sec-ch-ua-platform": '"Windows"',
-        "Sec-Fetch-Site": "cross-site",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Dest": "empty",
+        "accept-encoding": 'gzip',
+        "content-length": "45",
         "host": "backend2.tgss.vn"
     };
-    const response = await axios.post('https://backend2.tgss.vn/2e55ad4eb9ad4631b65efe18710b6feb/customers/login', data, {headers: headers});
+    const response = await axios.post('https://backend2.tgss.vn/0e96d6b13fb5335193eee7ed50eb5aa0/customers/login', data, {headers: headers});
     const status = response.data.success;
     if (status) {
         const token = response.data.data.token;
