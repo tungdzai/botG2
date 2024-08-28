@@ -16,22 +16,16 @@ async function sendTelegramMessage(message) {
     }
 }
 
-async function login(userName, reties = 4) {
+async function login(userName, reties = 2) {
     let password = "";
     if (reties < 0) {
         return;
     }
-    if (reties === 4) {
+    if (reties === 2) {
         password = "111111";
     }
-    if (reties === 3) {
-        password = "666777";
-    }
-    if (reties === 2) {
-        password = "777333";
-    }
     if (reties === 1) {
-        password = "888888";
+        password = "666777";
     }
     const data = {
         userName: userName,
@@ -44,13 +38,20 @@ async function login(userName, reties = 4) {
         "content-length": "45",
         "host": "backend2.tgss.vn"
     };
-    const response = await axios.post('https://backend2.tgss.vn/0e96d6b13fb5335193eee7ed50eb5aa0/customers/login', data, {headers: headers});
-    const status = response.data.success;
-    if (status) {
-        const token = response.data.data.token;
-        return token;
+    try {
+        const response = await axios.post('https://backend2.tgss.vn/0e96d6b13fb5335193eee7ed50eb5aa0/customers/login', data, {headers: headers});
+        const status = response.data.success;
+        if (status) {
+            const token = response.data.data.token;
+            return token;
+        }
+        return await login(userName, reties - 1)
+    }catch (e) {
+        const message=`Lỗi đăng nhập ${userName} kiểm tra lại`;
+        console.error(message);
+        await sendTelegramMessage(message);
+        return await login(userName, reties - 1)
     }
-    return await login(userName, reties - 1)
 
 }
 
@@ -89,13 +90,15 @@ async function exportGift() {
                 let found = false;
                 for (const gifts of dataGifts) {
                     for (const gift of gifts) {
-                        if (gift.referral.id === '08dcb51a-6d9e-407c-8dfe-fc37a5319ae3') {
-                            const message = `${phone}: ${gift.referral.title}`;
-                            found = true;
-                            usedPhones.push(phone);
-                            hasGiftPostCount++;
-                            console.log(message)
-                            break;
+                        if (gift.referral !== null){
+                            if (gift.referral.id === '08dcb51a-6d9e-407c-8dfe-fc37a5319ae3') {
+                                const message = `${phone}: ${gift.referral.title}`;
+                                found = true;
+                                usedPhones.push(phone);
+                                hasGiftPostCount++;
+                                console.log(message)
+                                break;
+                            }
                         }
                     }
                     if (found) break;
@@ -122,9 +125,7 @@ async function exportGift() {
 
     const summaryMessage = `Tổng đã dùng : ${usedCouponCount} : ${unusedPhones.join(', ')}\n` +
         `Tổng chưa dùng ': ${hasGiftPostCount} : ${usedPhones.join(', ')}`
-    const status=`Yêu mỡ yêu yêuuuuuuuu `
     await sendTelegramMessage(summaryMessage);
-    await sendTelegramMessage(status);
     dataPhone = [];
 }
 
